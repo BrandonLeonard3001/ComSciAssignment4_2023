@@ -1,0 +1,106 @@
+/**
+ * A binary search tree implementation that supports insertion, deletion,
+ * and search operations. The BST is implemented using a Node class to represent
+ * each node in the tree.
+ */
+public class BST {
+
+    /**
+     * The Node class represents a node in the binary search tree. Each node has
+     * a value and two child nodes (left and right).
+     */
+    private static class Node {
+        int value;
+        Node left;
+        Node right;
+
+        Node(int value) {
+            this.value = value;
+            left = null;
+            right = null;
+        }
+    }
+
+    private Node root;  // The root node of the binary search tree
+
+    /**
+     * Inserts a new value into the binary search tree.
+     * @param value the value to insert
+     */
+    public void insert(int value) {
+        root = insert(root, value);
+    }
+
+    /**
+     * Helper method for inserting a new value into the binary search tree.
+     * @param node the root node of the subtree to insert the value into
+     * @param value the value to insert
+     * @return the updated root node of the subtree
+     */
+    private Node insert(Node node, int value) {
+        if (node == null) {
+            return new Node(value);
+        } else if (value < node.value) {
+            node.left = insert(node.left, value);
+        } else if (value > node.value) {
+            node.right = insert(node.right, value);
+        }
+        return node;
+    }
+
+    /**
+     * Deletes a value from the binary search tree.
+     * @param value the value to delete
+     */
+    public void delete(int value) {
+        root = delete(root, value);
+    }
+
+    /**
+     * Helper method for deleting a value from the binary search tree.
+     * @param node the root node of the subtree to delete the value from
+     * @param value the value to delete
+     * @return the updated root node of the subtree
+     */
+    private Node delete(Node node, int value) {
+        if (node == null) {
+            return null;
+        } else if (value < node.value) {
+            node.left = delete(node.left, value);
+        } else if (value > node.value) {
+            node.right = delete(node.right, value);
+        } else {
+            // We have found the node to delete
+            if (node.left == null && node.right == null) {
+                // Case 1: The node has no children
+                return null;
+            } else if (node.left == null) {
+                // Case 2a: The node has one child (right)
+                return node.right;
+            } else if (node.right == null) {
+                // Case 2b: The node has one child (left)
+                return node.left;
+            } else {
+                // Case 3: The node has two children
+                // Find the smallest value in the right subtree
+                Node minRight = findMin(node.right);
+                // Replace the node's value with the minRight value
+                node.value = minRight.value;
+                // Delete the minRight node from the right subtree
+                node.right = delete(node.right, minRight.value);
+            }
+        }
+        return node;
+    }
+
+    /**
+     * Finds the node with the minimum value in the binary search tree.
+     * @param node the root node of the subtree to search
+     * @return the node with the minimum value
+     */
+    private Node findMin(Node node) {
+        while (node.left != null) {
+            node = node.left;
+        }
+    }
+}
