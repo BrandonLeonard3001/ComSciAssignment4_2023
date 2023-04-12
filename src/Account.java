@@ -31,9 +31,14 @@ public class Account implements Comparable<Account> {
 		profileDescription = this.profileDescription;
 	}
 	
-	public ArrayList<Post> getPosts()
+	public String getPosts()
 	{
-		return posts;
+		String postsString = "";
+		for(Post item : posts) 
+		{
+			postsString = postsString + item.toString() + "\n";
+		}
+		return postsString;
 	}
 	
 	public void addPost(Post post)
