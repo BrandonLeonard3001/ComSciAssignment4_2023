@@ -1,17 +1,21 @@
-import java.util.List;
+import java.util.ArrayList;
 
 public class Account implements Comparable<Account> {
 
 	private String accountName;
 	private String profileDescription;
-	List<Post> posts;
+	ArrayList<Post> posts = new ArrayList<Post>();
 	
 	public Account(String accountName, String profileDescription)
 	{
 		this.accountName = accountName;
 		this.profileDescription = profileDescription;
 	}
-	
+
+	public Account(String accountName)
+	{
+		this.accountName = accountName;
+	}
 	public String getAccountName()
 	{
 		return accountName;
@@ -27,7 +31,7 @@ public class Account implements Comparable<Account> {
 		profileDescription = this.profileDescription;
 	}
 	
-	public List<Post> getPosts()
+	public ArrayList<Post> getPosts()
 	{
 		return posts;
 	}
@@ -44,5 +48,11 @@ public class Account implements Comparable<Account> {
 	
 	public int compareTo(Account other) {
 	    return this.accountName.compareTo(other.accountName);
+	}
+	
+	public String toString()
+	{
+		return ("Account Name: "+ accountName + "\n" + "Profile Description: " + profileDescription);
+
 	}
 }
