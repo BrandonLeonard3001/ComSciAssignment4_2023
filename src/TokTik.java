@@ -24,72 +24,73 @@ public class TokTik {
 			choice = keyboard.nextLine();
 			switch (choice) {
 			case "1":
-				//Find the profile description for a given account
+			case "3":
+			case "4":
+			case "5":
+			case "6":
 				System.out.println("Enter the account name:");
 				String accountName = keyboard.nextLine();
-				Account placeholder = new Account(accountName);
-				BinaryTreeNode<Account> node = BT.find(placeholder);
-					if (node != null) {
-    					Account account = node.data;
-    					String description = account.getProfileDescription();
-    					System.out.println(description);
-					} else {
-    					// handle the case when accountName is not found in the BST
-					}
-				break;
+				switch (choice){
+					case "1":
+						Account placeholder = new Account(accountName);
+						BinaryTreeNode<Account> node = BT.find(placeholder);
+							if (node != null) {
+								Account account = node.data;
+								String description = account.getProfileDescription();
+								System.out.println(description);
+							} else {
+								// handle the case when accountName is not found in the BST
+							}
+						break;
+					case "3":
+						//create new account
+						System.out.println("Please Enter your profile description");
+						String profileDescription = keyboard.nextLine();
+						Account account = new Account(accountName,profileDescription);
+						BT.insert(account);
+						break;
+					case "4":
+						//delete an account
+						placeholder = new Account(accountName);
+						BT.delete(placeholder);
+						break;
+					case "5":
+						//get all the posts from a particular account
+						placeholder = new Account(accountName);
+						BinaryTreeNode<Account> node1 = BT.find(placeholder);
+							if (node1 != null) {
+								account = node1.data;
+								System.out.println(account.getPosts());
+								// maybe could setup case if the account has no posts?
+							} else {
+								// handle the case when accountName is not found in the BST
+							}
+						break;
+					case "6":
+						//insert a new post to an account
+						placeholder = new Account(accountName);
+						node1 = BT.find(placeholder);
+						if (node1 != null) {
+							account = node1.data;
+							System.out.println("Please give the video file name:");
+							String videoFileName = keyboard.nextLine();
+							System.out.println("Please give the number of likes:");
+							String numberOfLikes = keyboard.nextLine();
+							System.out.println("Please give the title:");
+							String title = keyboard.nextLine();
+							Post post = new Post(videoFileName, Integer.parseInt(numberOfLikes), title);
+							account.addPost(post);
+						} else {
+							// handle the case when accountName is not found in the BST
+						}
+					break;
+				}
+			break;
 			case "2":
 				//List all accounts
 				BT.inOrder();
 				break;
-			case "3":
-				//Create an account
-				System.out.println("Please Enter your username");
-				accountName = keyboard.nextLine();
-				System.out.println("Please Enter your profile description");
-				String profileDescription = keyboard.nextLine();
-				Account account = new Account(accountName,profileDescription);
-				BT.insert(account);
-				break;
-			case "4":
-				//Delete an account
-				System.out.println("Enter the account name:");
-				accountName = keyboard.nextLine();
-				placeholder = new Account(accountName);
-				BT.delete(placeholder);
-				break;
-			case "5":
-				//Display all posts for a single account
-				System.out.println("Enter the account name:");
-				accountName = keyboard.nextLine();
-				placeholder = new Account(accountName);
-				BinaryTreeNode<Account> node1 = BT.find(placeholder);
-					if (node1 != null) {
-    					account = node1.data;
-    					System.out.println(account.getPosts());
-					} else {
-    					// handle the case when accountName is not found in the BST
-					}
-				break;
-			case "6":
-				//Add a new post for an account
-				System.out.println("Enter the account name:");
-				accountName =keyboard.nextLine();
-				placeholder = new Account(accountName);
-				node1 = BT.find(placeholder);
-					if (node1 != null) {
-						account = node1.data;
-						System.out.println("Please give the video file name:");
-						String videoFileName = keyboard.nextLine();
-						System.out.println("Please give the number of likes:");
-						String numberOfLikes = keyboard.nextLine();
-						System.out.println("Please give the title:");
-						String title = keyboard.nextLine();
-						Post post = new Post(videoFileName, Integer.parseInt(numberOfLikes), title);
-						account.addPost(post);
-					} else {
-						// handle the case when accountName is not found in the BST
-					}
-				break;
+
 			case "7":	
 				//Load a file of actions from disk and process this
 				try
@@ -109,7 +110,7 @@ public class TokTik {
 						accountName = tokens[1];
 						if (action.equals("Create"))
 						{
-							profileDescription = tokens[2];
+							String profileDescription = tokens[2];
 							Account newAccount = new Account(accountName,profileDescription);
 							//Post testPost = new Post("video1123.mp4",5000,"cock and balls");
 							//newAccount.addPost(testPost);
@@ -121,10 +122,10 @@ public class TokTik {
 							String videoFileName = remainder[0];
 							String numberOfLikes = remainder[1];
 							String title = remainder[2];
-							placeholder = new Account(accountName);
-							node = BT.find(placeholder);
+							Account placeholder = new Account(accountName);
+							BinaryTreeNode<Account> node = BT.find(placeholder);
 							if (node != null) {
-								account = node.data;
+								Account account = node.data;
 								Post post = new Post(videoFileName,(Integer.parseInt(numberOfLikes)), title);
 								if (account != null)
 								{
