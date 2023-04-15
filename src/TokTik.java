@@ -6,7 +6,7 @@ public class TokTik {
 
 	public static void main(String[] args) {
 		BinarySearchTree<Account> BT = new BinarySearchTree<Account>();
-		
+		TokTikGUI gui = new TokTikGUI();
 		String choice = "0";
 		Scanner keyboard = new Scanner(System.in);
 		while (!choice.equals("8"))
@@ -39,7 +39,7 @@ public class TokTik {
 								String description = account.getProfileDescription();
 								System.out.println(description);
 							} else {
-								// handle the case when accountName is not found in the BST
+								//TO DO handle the case when accountName is not found in the BST
 							}
 						break;
 					case "3":
@@ -63,7 +63,7 @@ public class TokTik {
 								System.out.println(account.getPosts());
 								// maybe could setup case if the account has no posts?
 							} else {
-								// handle the case when accountName is not found in the BST
+								//TO DO handle the case when accountName is not found in the BST
 							}
 						break;
 					case "6":
@@ -81,7 +81,7 @@ public class TokTik {
 							Post post = new Post(videoFileName, Integer.parseInt(numberOfLikes), title);
 							account.addPost(post);
 						} else {
-							// handle the case when accountName is not found in the BST
+							//TO DO handle the case when accountName is not found in the BST
 						}
 					break;
 				}
@@ -89,6 +89,8 @@ public class TokTik {
 			case "2":
 				//List all accounts
 				BT.inOrder();
+				System.out.println(BT.getList());
+				//System.out.println(BT.getList().size());
 				break;
 
 			case "7":	
@@ -112,8 +114,6 @@ public class TokTik {
 						{
 							String profileDescription = tokens[2];
 							Account newAccount = new Account(accountName,profileDescription);
-							//Post testPost = new Post("video1123.mp4",5000,"cock and balls");
-							//newAccount.addPost(testPost);
 							BT.insert(newAccount);
 						}
 						else if (action.equals("Add"))
