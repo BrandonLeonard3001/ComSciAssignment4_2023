@@ -6,11 +6,13 @@ public class TokTik {
 
 	public static void main(String[] args) {
 		BinarySearchTree<Account> BT = new BinarySearchTree<Account>();
-		TokTikGUI gui = new TokTikGUI();
+		//TokTikGUI gui = new TokTikGUI();
 		String choice = "0";
 		Scanner keyboard = new Scanner(System.in);
 		while (!choice.equals("8"))
+		
 		{
+			//System.out.println(gui.getChoice());
 			System.out.println("Choose an action from the menu:\r\n"
 					+ "1. Find the profile description for a given account\r\n"
 					+ "2. List all accounts\r\n"
@@ -22,6 +24,7 @@ public class TokTik {
 					+ "8. Quit\r\n"
 					+ "Enter your choice: ");
 			choice = keyboard.nextLine();
+			//choice = gui.getChoice();
 			switch (choice) {
 			case "1":
 			case "3":

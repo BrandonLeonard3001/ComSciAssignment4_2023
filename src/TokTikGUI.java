@@ -11,19 +11,19 @@ public class TokTikGUI implements ActionListener {
     private BinarySearchTree<Account> BT;
     private JFrame frame;
     private JTextField accountNameField;
+    private String choice;
 
     public TokTikGUI() {
         BT = new BinarySearchTree<Account>();
         frame = new JFrame("TokTik");
         frame.setLayout(new FlowLayout());
+        //String choice;
 
         // Add label and text field for entering account name
         JLabel accountNameLabel = new JLabel("Enter the account name:");
         frame.add(accountNameLabel);
         accountNameField = new JTextField(20);
         frame.add(accountNameField);
-        accountNameLabel.setVisible(false);
-        accountNameField.setVisible(false);
 
         // Add button for finding profile description
         JButton button1 = new JButton("Find Profile Description");
@@ -84,6 +84,17 @@ public class TokTikGUI implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        String choice = e.getActionCommand();
+        choice = e.getActionCommand();
+    }
+
+    public String getChoice()
+    {
+        if (choice == null)
+        {
+            return "0";
+        }
+        else{
+            return choice;
+        }
     }
 }
