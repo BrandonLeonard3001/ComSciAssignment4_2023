@@ -35,34 +35,43 @@ public class TokTik {
 				String accountName = keyboard.nextLine();
 				switch (choice){
 					case "1":
-						Account placeholder = new Account(accountName);
-						BinaryTreeNode<Account> node = BT.find(placeholder);
-							if (node != null) {
-								Account account = node.data;
-								String description = account.getProfileDescription();
-								System.out.println(description);
-							} else {
+						System.out.println(TokTikUtility.findProfileDecription(accountName, BT));
+						//Account placeholder = new Account(accountName);
+						//BinaryTreeNode<Account> node = BT.find(placeholder);
+							//if (node != null) {
+								//Account account = node.data;
+								//String description = account.getProfileDescription();
+								//System.out.println(description);
+							//} else {
 								//TO DO handle the case when accountName is not found in the BST
-							}
+							//}
 						break;
 					case "3":
 						//create new account
 						System.out.println("Please Enter your profile description");
 						String profileDescription = keyboard.nextLine();
-						Account account = new Account(accountName,profileDescription);
-						BT.insert(account);
+						//Account account = new Account(accountName,profileDescription);
+						//BT.insert(account);
+						if (TokTikUtility.accountExists(accountName, BT))
+						{
+							System.out.println("Account name already exists");
+						} else {
+							TokTikUtility.createNewAccount(accountName, profileDescription, BT);
+							System.out.println("Account added");
+						}
 						break;
 					case "4":
 						//delete an account
-						placeholder = new Account(accountName);
-						BT.delete(placeholder);
+						//Account placeholder = new Account(accountName);
+						//BT.delete(placeholder);
+						TokTikUtility.deleteAccount(accountName, BT);
 						break;
 					case "5":
 						//get all the posts from a particular account
-						placeholder = new Account(accountName);
+						Account placeholder = new Account(accountName);
 						BinaryTreeNode<Account> node1 = BT.find(placeholder);
 							if (node1 != null) {
-								account = node1.data;
+								Account account = node1.data;
 								System.out.println(account.getPosts());
 								// maybe could setup case if the account has no posts?
 							} else {
@@ -74,7 +83,7 @@ public class TokTik {
 						placeholder = new Account(accountName);
 						node1 = BT.find(placeholder);
 						if (node1 != null) {
-							account = node1.data;
+							Account account = node1.data;
 							System.out.println("Please give the video file name:");
 							String videoFileName = keyboard.nextLine();
 							System.out.println("Please give the number of likes:");
@@ -91,8 +100,8 @@ public class TokTik {
 			break;
 			case "2":
 				//List all accounts
-				BT.inOrder();
-				System.out.println(BT.getList());
+				//BT.inOrder();
+				System.out.println(TokTikUtility.listAllAccounts(BT));
 				//System.out.println(BT.getList().size());
 				break;
 

@@ -2,17 +2,23 @@ import java.util.ArrayList;
 
 public class TokTikUtility {
     
-    public String findProfileDecription(String accountName, BinarySearchTree<Account> BT)
+    public static String findProfileDecription(String accountName, BinarySearchTree<Account> BT)
     {
         Account placeholder = new Account(accountName);
 						BinaryTreeNode<Account> node = BT.find(placeholder);
+                        if (node != null)
+                        {
 						Account account = node.data;
 						String description = account.getProfileDescription();
 						return description;
+                        }
+                        else{
+                            return "Cannot Find Account";
+                        }
 							
     }
 
-    public String listAllAccounts(BinarySearchTree<Account> BT)
+    public static String listAllAccounts(BinarySearchTree<Account> BT)
     {
         BT.inOrder();
         ArrayList<Account> list = BT.getList();
@@ -24,13 +30,20 @@ public class TokTikUtility {
         return accounts;
     }
 
-    public void createNewAccount(String accountName, String profileDescription, BinarySearchTree<Account> BT)
+    public static void createNewAccount(String accountName, String profileDescription, BinarySearchTree<Account> BT)
     {
-		Account account = new Account(accountName,profileDescription);
-		BT.insert(account);
+        Account placeholder = new Account(accountName,profileDescription);
+        BinaryTreeNode<Account> node = BT.find(placeholder);
+                if (node != null)
+                {
+                    //do nothing
+                }
+                else{
+                    BT.insert(placeholder);
+                }
     }
 
-    public void deleteAccount(String accountName, BinarySearchTree<Account> BT)
+    public static void deleteAccount(String accountName, BinarySearchTree<Account> BT)
     {
         Account placeholder = new Account(accountName);
 		BT.delete(placeholder);
@@ -63,5 +76,16 @@ public class TokTikUtility {
 			} else {
 							//TO DO handle the case when accountName is not found in the BST
 			}
-    } 
+    }
+    
+    public static boolean accountExists(String accountName, BinarySearchTree<Account> BT)
+    {
+        Account placeholder = new Account(accountName);
+        BinaryTreeNode<Account> node = BT.find(placeholder);
+			if (node != null) {
+				return true;
+			} else {
+				return false;
+			}
+    }
 }
