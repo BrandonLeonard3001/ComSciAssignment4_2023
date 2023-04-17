@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 
 public class TokTikUtility {
     
@@ -16,18 +15,6 @@ public class TokTikUtility {
                             return "Cannot Find Account";
                         }
 							
-    }
-
-    public static String listAllAccounts(BinarySearchTree<Account> BT)
-    {
-        BT.inOrder();
-        ArrayList<Account> list = BT.getList();
-        String accounts = "";
-		for (int i = 0; i < list.size(); i++) {
-            Account account = list.get(i);
-            accounts = accounts + account.getAccountName() + "\n";
-        }
-        return accounts;
     }
 
     public static void createNewAccount(String accountName, String profileDescription, BinarySearchTree<Account> BT)

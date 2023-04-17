@@ -1,9 +1,7 @@
-import java.util.ArrayList;
 
 public class BinaryTree<dataType>
 {
    BinaryTreeNode<dataType> root;
-   ArrayList<dataType> list = new ArrayList<dataType>();
 
    public BinaryTree ()
    {
@@ -36,7 +34,7 @@ public class BinaryTree<dataType>
    
    public void visit ( BinaryTreeNode<dataType> node )
    {
-      list.add(node.data);
+      System.out.println(node.data);
    }
    
    public void preOrder ()
@@ -69,7 +67,6 @@ public class BinaryTree<dataType>
 
    public void inOrder ()
    {
-      clearList();
       inOrder (root);
    }
    public void inOrder ( BinaryTreeNode<dataType> node )
@@ -97,15 +94,6 @@ public class BinaryTree<dataType>
          if (node.getRight () != null)
             q.enQueue (node.getRight ());
       }
-   }
-   public ArrayList<dataType> getList()
-   {
-      return list;
-   }
-
-   public void clearList()
-   {
-      list.clear();
    }
    
 }
