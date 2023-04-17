@@ -56,7 +56,6 @@ public class TokTikGUI implements ActionListener {
         button2.setActionCommand("2");
         button2.addActionListener(this);
         frame.add(button2);
-
         // Add button for creating an account
         JButton button3 = new JButton("Create an Account");
         button3.setActionCommand("3");
@@ -220,6 +219,7 @@ public class TokTikGUI implements ActionListener {
 			break;
 			case "2":
 				//List all accounts
+				
 				BT.inOrder();
 				break;
 
