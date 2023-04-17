@@ -111,7 +111,8 @@ public class MyGUI extends JFrame implements ActionListener {
             String accountName = JOptionPane.showInputDialog("Enter account name:");
             if (accountName != null)
             {
-                TokTikUtility.deleteAccount(accountName, BT);
+                System.out.println(TokTikUtility.deleteAccount(accountName, BT));
+
             } else {
                 System.out.println("Action Cancelled.");
             }

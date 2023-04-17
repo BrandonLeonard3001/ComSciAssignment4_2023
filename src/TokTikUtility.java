@@ -33,10 +33,21 @@ public class TokTikUtility {
                 }
     }
 
-    public static void deleteAccount(String accountName, BinarySearchTree<Account> BT)
-    {
+    public static String deleteAccount(String accountName, BinarySearchTree<Account> BT)
+    {   
+
         Account placeholder = new Account(accountName);
-		BT.delete(placeholder);
+        BinaryTreeNode<Account> node = BT.find(placeholder);
+        if (node != null) 
+        {
+                BT.delete(placeholder);
+                return "Account Deleted";
+        }
+        else
+        {
+            return "No Account found";
+        }
+
     }
 
     public static String getAllPosts(String accountName, BinarySearchTree<Account> BT)
