@@ -29,6 +29,6 @@ public class Post {
 
 	public String toString()
 	{
-		return ""+ videoFileName + " " + numberOfLikes + " " + title + "";
+		return "Video File Name: "+ videoFileName + "\nNumber Of Likes: " + numberOfLikes + "\nTitle: " + title + "\n";
 	}
 }

@@ -122,9 +122,22 @@ public class TokTikUtility {
 						}
 					}
 					scanner.close();
+                    System.out.println("Actions loaded succesfully!");
 				} catch (FileNotFoundException f)
 				{
 					System.out.println("File not found!");
 				}
+    }
+
+    public static boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            double d = Double.parseDouble(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
     }
 }

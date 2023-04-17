@@ -14,22 +14,22 @@ public class MyGUI extends JFrame implements ActionListener {
     // Constructor
     public MyGUI() {
 
-
+        // Initialize and configure the output window
         outputArea = new JTextArea();
         outputArea.setEditable(false);
         outputArea.setLineWrap(true);
         outputArea.setWrapStyleWord(false);
         JScrollPane scrollPane = new JScrollPane(outputArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        outputArea.setPreferredSize(new Dimension(500, 100000));
+        outputArea.setPreferredSize(new Dimension(500, 50000));
         outputArea.setFont(new Font("Arial", Font.PLAIN, 14)); // set font to Arial, size 14
-        scrollPane.setPreferredSize(new Dimension(800, 400));
+        scrollPane.setPreferredSize(new Dimension(700, 400));
         PrintStream printStream = new PrintStream(new JTextAreaOutputStream(outputArea));
         System.setOut(printStream);
 
 
         // Set window properties
-        setTitle("My GUI");
-        setSize(900, 500);
+        setTitle("TokTik");
+        setSize(900, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         
@@ -74,34 +74,57 @@ public class MyGUI extends JFrame implements ActionListener {
         if (e.getSource() == btn1) {
             outputArea.setText("");
             String accountName = JOptionPane.showInputDialog("Enter account name:");
-            // store that button 1 was clicked and store the account name
-            System.out.println(TokTikUtility.findProfileDecription(accountName, BT));
+            if (accountName != null)
+            {
+                System.out.println(TokTikUtility.findProfileDecription(accountName, BT));
+            } else {
+                System.out.println("Action Cancelled.");
+            }
         } else if (e.getSource() == btn2) {
             outputArea.setText("");
             // store that button 2 was clicked
             BT.inOrder();
+            if (outputArea.getText().length() == 0)
+            {
+                System.out.println("No Accounts Loaded");
+            }
         } else if (e.getSource() == btn3) {
             outputArea.setText("");
             String accountName = JOptionPane.showInputDialog("Enter account name:");
             String profileDescription = JOptionPane.showInputDialog("Enter profile description:");
-            if (TokTikUtility.accountExists(accountName, BT))
+            if ((accountName != null) && (profileDescription != null))
+            {
+                if (TokTikUtility.accountExists(accountName, BT))
 						{
 							System.out.println("Account name already exists");
 						} else {
 							TokTikUtility.createNewAccount(accountName, profileDescription, BT);
 							System.out.println("Account added");
 						}
+            } else {
+                System.out.println("Account Creation Cancelled");
+            }
             // store that button 3 was clicked and then ask for the account name and store the account name. 
             // It then needs to ask for the profile description and store that.
         } else if (e.getSource() == btn4) {
             outputArea.setText("");
             String accountName = JOptionPane.showInputDialog("Enter account name:");
-            TokTikUtility.deleteAccount(accountName, BT);
+            if (accountName != null)
+            {
+                TokTikUtility.deleteAccount(accountName, BT);
+            } else {
+                System.out.println("Action Cancelled.");
+            }
             // store that button 4 was clicked and then ask for the account name and store that account name.
         } else if (e.getSource() == btn5) {
             outputArea.setText("");
             String accountName = JOptionPane.showInputDialog("Enter account name:");
-            System.out.println(TokTikUtility.getAllPosts(accountName, BT));
+            if (accountName != null){
+                System.out.println(TokTikUtility.getAllPosts(accountName, BT));
+            } else {
+                System.out.println("Action Cancelled.");
+            }
+
             // store that button 5 was clicked and then ask for the account name and store that account name.
         } else if (e.getSource() == btn6) {
             outputArea.setText("");
@@ -109,13 +132,28 @@ public class MyGUI extends JFrame implements ActionListener {
             String videoFileName = JOptionPane.showInputDialog("Enter the video file name:");
             String numberOfLikes = JOptionPane.showInputDialog("Enter the number of likes:");
             String title = JOptionPane.showInputDialog("Enter the video title:");
-            TokTikUtility.insterNewPost(accountName, BT, videoFileName, numberOfLikes, title);
+            if ((accountName != null) && (videoFileName != null) && (numberOfLikes != null) && (title != null))
+            {
+                if (TokTikUtility.isNumeric(numberOfLikes)){
+                    TokTikUtility.insterNewPost(accountName, BT, videoFileName, numberOfLikes, title);
+                } else {
+                    System.out.println("Please give a numeric value for number of likes :)");
+                }
+            } else {
+                System.out.println("Insertion of posts cancelled");
+            }
             // store that button 6 was
         } else if (e.getSource() == btn7) {
             outputArea.setText("");
             // store that button 7 was
             String fileName = JOptionPane.showInputDialog("Enter the file name:");
-            TokTikUtility.processData(fileName, BT);
+            if (fileName != null)
+            {
+                TokTikUtility.processData(fileName, BT); 
+            }else {
+                System.out.println("Action loading cancelled.");
+            }
+            
         } else if (e.getSource() == btn8) {
             outputArea.setText("");
             // store that button 8 was
