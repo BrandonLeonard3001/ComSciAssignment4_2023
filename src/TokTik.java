@@ -15,7 +15,7 @@ public class TokTik {
 	private BinarySearchTree<Account> BT;
 
 	public static void main(String[] args) {
-		new TokTikGUI();
+		new MyGUI();
 	}
 
 	//public void actionPerformed(ActionEvent e) {

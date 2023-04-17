@@ -72,15 +72,16 @@ public class MyGUI extends JFrame implements ActionListener {
     // Button actions
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btn1) {
+            outputArea.setText("");
             String accountName = JOptionPane.showInputDialog("Enter account name:");
             // store that button 1 was clicked and store the account name
-            System.out.println("Button 1 was clicked with account name: " + accountName);
             System.out.println(TokTikUtility.findProfileDecription(accountName, BT));
         } else if (e.getSource() == btn2) {
+            outputArea.setText("");
             // store that button 2 was clicked
-            System.out.println("Button 2 was clicked");
             BT.inOrder();
         } else if (e.getSource() == btn3) {
+            outputArea.setText("");
             String accountName = JOptionPane.showInputDialog("Enter account name:");
             String profileDescription = JOptionPane.showInputDialog("Enter profile description:");
             if (TokTikUtility.accountExists(accountName, BT))
@@ -92,22 +93,31 @@ public class MyGUI extends JFrame implements ActionListener {
 						}
             // store that button 3 was clicked and then ask for the account name and store the account name. 
             // It then needs to ask for the profile description and store that.
-            System.out.println("Button 3 was clicked with account name: " + accountName + " and profile description: " + profileDescription);
         } else if (e.getSource() == btn4) {
+            outputArea.setText("");
             String accountName = JOptionPane.showInputDialog("Enter account name:");
             TokTikUtility.deleteAccount(accountName, BT);
             // store that button 4 was clicked and then ask for the account name and store that account name.
-            System.out.println("Button 4 was clicked with account name: " + accountName);
         } else if (e.getSource() == btn5) {
+            outputArea.setText("");
             String accountName = JOptionPane.showInputDialog("Enter account name:");
+            System.out.println(TokTikUtility.getAllPosts(accountName, BT));
             // store that button 5 was clicked and then ask for the account name and store that account name.
-            System.out.println("Button 5 was clicked with account name: " + accountName);
         } else if (e.getSource() == btn6) {
+            outputArea.setText("");
+            String accountName = JOptionPane.showInputDialog("Enter account name:");
+            String videoFileName = JOptionPane.showInputDialog("Enter the video file name:");
+            String numberOfLikes = JOptionPane.showInputDialog("Enter the number of likes:");
+            String title = JOptionPane.showInputDialog("Enter the video title:");
+            TokTikUtility.insterNewPost(accountName, BT, videoFileName, numberOfLikes, title);
             // store that button 6 was
         } else if (e.getSource() == btn7) {
+            outputArea.setText("");
             // store that button 7 was
-        
+            String fileName = JOptionPane.showInputDialog("Enter the file name:");
+            TokTikUtility.processData(fileName, BT);
         } else if (e.getSource() == btn8) {
+            outputArea.setText("");
             // store that button 8 was
             System.out.println("Bye!");
             System.exit(0);
