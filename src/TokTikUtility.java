@@ -5,10 +5,22 @@
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+/**
+ * Utility Class for the TokTik app
+ * @author Brandon Leonard
+ * @version 1.0.0
+ */
 
 public class TokTikUtility {
     
-    public static String findProfileDecription(String accountName, BinarySearchTree<Account> BT)    //Method to find a profile description from a given account name from a given BinaryTree
+    
+    /** 
+     * Method to find a profile description from a given account name from a given BinaryTree
+     * @param accountName
+     * @param BT
+     * @return String
+     */
+    public static String findProfileDecription(String accountName, BinarySearchTree<Account> BT) 
     {
         Account placeholder = new Account(accountName);     //Creation of a temporary account in order to locate the associated node in the binary tree
 						BinaryTreeNode<Account> node = BT.find(placeholder);    
@@ -24,6 +36,13 @@ public class TokTikUtility {
 							
     }
 
+    
+    /** 
+     * method to create a new full account
+     * @param accountName
+     * @param profileDescription
+     * @param BT
+     */
     public static void createNewAccount(String accountName, String profileDescription, BinarySearchTree<Account> BT)    //method to create a new full account
     {
         Account placeholder = new Account(accountName,profileDescription);  //creation of a temporary account to help locate it in the binary tree
@@ -38,6 +57,12 @@ public class TokTikUtility {
                 }
     }
 
+    
+    /** 
+     * method to delete an account from the binary tree
+     * @param accountName
+     * @param BT
+     */
     public static void deleteAccount(String accountName, BinarySearchTree<Account> BT)    //method to delete an account from the binary tree
     {   
 
@@ -55,6 +80,13 @@ public class TokTikUtility {
 
     }
 
+    
+    /** 
+     * returns all the posts of a given account
+     * @param accountName
+     * @param BT
+     * @return String
+     */
     public static String getAllPosts(String accountName, BinarySearchTree<Account> BT)  //returns all the posts of a given account
     {
         Account placeholder = new Account(accountName);     //check if the given account exists
@@ -71,6 +103,15 @@ public class TokTikUtility {
         }
     }
 
+    
+    /** 
+     * method to insert a new post into a pre-existing account
+     * @param accountName
+     * @param BT
+     * @param videoFileName
+     * @param numberOfLikes
+     * @param title
+     */
     public static void insterNewPost(String accountName, BinarySearchTree<Account> BT, String videoFileName, String numberOfLikes, String title)    //method to insert a new post into a pre-existing account
     {
         Account placeholder = new Account(accountName);     //check if account is pre-existing in our binary tree
@@ -86,6 +127,13 @@ public class TokTikUtility {
 			}
     }
     
+    
+    /** 
+     * method to check if an account exists in a given Binary Tree
+     * @param accountName
+     * @param BT
+     * @return boolean
+     */
     public static boolean accountExists(String accountName, BinarySearchTree<Account> BT)   //a boolean method to check if an account exists
     {
         Account placeholder = new Account(accountName);
@@ -97,6 +145,12 @@ public class TokTikUtility {
 			}
     }
 
+    
+    /** 
+     * method to grab a set of actions and add it to the binary tree from a file
+     * @param fileName
+     * @param BT
+     */
     public static void processData(String fileName, BinarySearchTree<Account> BT)   //a method to grab a set of actions and add it to the binary tree from a file
     {
         //Load a file of actions from disk and process this
@@ -146,6 +200,12 @@ public class TokTikUtility {
 				}
     }
 
+    
+    /** 
+     * method to check if a given String value is numeric or not
+     * @param strNum
+     * @return boolean
+     */
     public static boolean isNumeric(String strNum) {    //method to check if a given String value is numeric or not
         if (strNum == null) {   //first checking if it is null
             return false;

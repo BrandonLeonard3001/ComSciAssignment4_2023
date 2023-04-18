@@ -8,6 +8,12 @@ import java.awt.event.*;
 import javax.swing.JFrame;
 import java.io.PrintStream;
 
+/**
+ * GUI for TokTik application
+ * @author Brandon Leonard
+ * @version 1.0.0
+ */
+
 public class MyGUI extends JFrame implements ActionListener {
     
     // Declare components
@@ -73,6 +79,11 @@ public class MyGUI extends JFrame implements ActionListener {
         setVisible(true);
     }
     
+    
+    /** 
+     * Action performed to determine which button was pressed.
+     * @param e
+     */
     // Button actions
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btn1) {    //Find Profile Description button clicked

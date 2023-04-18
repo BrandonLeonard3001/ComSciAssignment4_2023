@@ -1,4 +1,0 @@
-INDEX VERSION 1.131+D:\UCT stuff\Computer Science\OneDrive - University of Cape Town\2023\CSC2001F\Assignments\Assignment4\TokTik\.metadata\.plugins\org.eclipse.jdt.core
-394942466.index
-2149863727.index
-1865797976.index

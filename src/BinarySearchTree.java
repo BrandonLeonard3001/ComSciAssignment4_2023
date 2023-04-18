@@ -1,9 +1,18 @@
 // Hussein's Binary Search Tree
 // 27 March 2017
 // Hussein Suleman
-
+/**
+ * Hussein's Binary Search Tree
+ * 27 March 2017
+ * @author Hussein Suleman
+ * @version 1.0.0
+ */
 public class BinarySearchTree<dataType extends Comparable<? super dataType>> extends BinaryTree<dataType>
 {
+	   
+	   /** 
+		* @param d
+		*/
 	   public void insert ( dataType d )
 	   {
 	      if (root == null)
@@ -11,6 +20,11 @@ public class BinarySearchTree<dataType extends Comparable<? super dataType>> ext
 	      else
 	         insert (d, root);
 	   }
+	   
+	   /** 
+		* @param d
+		* @param node
+		*/
 	   public void insert ( dataType d, BinaryTreeNode<dataType> node )
 	   {
 	      if (d.compareTo (node.data) <= 0)
@@ -29,6 +43,11 @@ public class BinarySearchTree<dataType extends Comparable<? super dataType>> ext
 	      }
 	   }
 	   
+	   
+	   /** 
+		* @param d
+		* @return BinaryTreeNode<dataType>
+		*/
 	   public BinaryTreeNode<dataType> find ( dataType d )
 	   {
 	      if (root == null)
@@ -36,6 +55,12 @@ public class BinarySearchTree<dataType extends Comparable<? super dataType>> ext
 	      else
 	         return find (d, root);
 	   }
+	   
+	   /** 
+		* @param d
+		* @param node
+		* @return BinaryTreeNode<dataType>
+		*/
 	   public BinaryTreeNode<dataType> find ( dataType d, BinaryTreeNode<dataType> node )
 	   {
 	      if (d.compareTo (node.data) == 0) 
@@ -46,10 +71,20 @@ public class BinarySearchTree<dataType extends Comparable<? super dataType>> ext
 	         return (node.right == null) ? null : find (d, node.right);
 	   }
 	   
+	   
+	   /** 
+		* @param d
+		*/
 	   public void delete ( dataType d )
 	   {
 	      root = delete (d, root);
 	   }   
+	   
+	   /** 
+		* @param d
+		* @param node
+		* @return BinaryTreeNode<dataType>
+		*/
 	   public BinaryTreeNode<dataType> delete ( dataType d, BinaryTreeNode<dataType> node )
 	   {
 	      if (node == null) return null;
@@ -70,6 +105,11 @@ public class BinarySearchTree<dataType extends Comparable<? super dataType>> ext
 	      return node;
 	   }
 	   
+	   
+	   /** 
+		* @param node
+		* @return BinaryTreeNode<dataType>
+		*/
 	   public BinaryTreeNode<dataType> findMin ( BinaryTreeNode<dataType> node )
 	   {
 	      if (node != null)
@@ -78,6 +118,11 @@ public class BinarySearchTree<dataType extends Comparable<? super dataType>> ext
 	      return node;
 	   }
 
+	   
+	   /** 
+		* @param node
+		* @return BinaryTreeNode<dataType>
+		*/
 	   public BinaryTreeNode<dataType> removeMin ( BinaryTreeNode<dataType> node )
 	   {
 	      if (node == null)

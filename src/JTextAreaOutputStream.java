@@ -6,6 +6,13 @@ import java.io.IOException;
 import java.io.OutputStream;
 import javax.swing.JTextArea;
 
+/**
+ * OutputStream object.
+ * Allows for redirect of System.out.print statements
+ * @author Brandon Leonard
+ * @version 1.0.0
+ */
+
 class JTextAreaOutputStream extends OutputStream {  // The class is to redirect the output stream to a JTextArea. In other words all System.out.println() will go to a JTextAre rather than the terminal
     private JTextArea textArea;
 
