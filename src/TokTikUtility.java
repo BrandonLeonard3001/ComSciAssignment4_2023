@@ -211,7 +211,7 @@ public class TokTikUtility {
             return false;
         }
         try {
-            Double.parseDouble(strNum); //use of try to see if we can parse it
+            Integer.parseInt(strNum); //use of try to see if we can parse it
         } catch (NumberFormatException nfe) {   //if we cannot parse it then it is not numeric
             return false;
         }
