@@ -1,31 +1,33 @@
-#Define variables
-JC = javac
-SRC_DIR = src
-BIN_DIR = bin
-MAIN_CLASS = TokTik
+JAVAC=/usr/bin/javac
+.SUFFIXES: .java .class
+SRCDIR=src
+BINDIR=bin
 
-# Find all .java files in the src directory
-SOURCES := $(wildcard $(SRC_DIR)/*.java)
-
-# Generate corresponding .class file names
-CLASSES := $(patsubst $(SRC_DIR)/%.java,$(BIN_DIR)/%.class,$(SOURCES))
-
-# Define the build target
-all: $(CLASSES)
-
-#Define how to build .class files from .java files
-$(BIN_DIR)/%.class: $(SRC_DIR)/%.java
-	@mkdir -p $(@D)
-	$(JC) - cp $(BIN_DIR) -d $(BIN_DIR) $<
-
-#Define the run target
-TokTik: bin/TokTik.class
-	java -cp bin TokTik
-run:
-	java - cp $(BIN_DIR) $(MAIN_CLASS)
+$(BINDIR)/%.class:$(SRCDIR)/%.java
+	$(JAVAC) -d $(BINDIR)/ -cp $(BINDIR) $<
 	
-#Define the clean target
-clean:
-	rm -rf $(BIN_DIR)
+CLASSES=Vaccine.class \
+	Account.class \
+	BinaryTreeNode.class \
+	BTQueueNode.class \
+	BTQueue.class \
+	BinaryTree.class \
+    BTQueueNode.class \
+	BinarySearchTree.class \
+	JTextAreaOutputStream.class \
+	MyGUI.class \
+	Post.class \
+	TokTik.class \
+	TokTikUtility.class
+                 
+CLASS_FILES=$(CLASSES:%.class=$(BINDIR)/%.class)
 
-.PHONY: all run clean
+default: $(CLASS_FILES)
+
+clean:
+	rm $(BINDIR)/*.class
+run: $(CLASS_FILES)
+	java -cp bin TokTik
+	
+bst: $(CLASS_FILES)
+	java -cp bin TokTik
