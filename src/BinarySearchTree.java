@@ -1,3 +1,6 @@
+// Hussein's Binary Search Tree
+// 27 March 2017
+// Hussein Suleman
 
 public class BinarySearchTree<dataType extends Comparable<? super dataType>> extends BinaryTree<dataType>
 {

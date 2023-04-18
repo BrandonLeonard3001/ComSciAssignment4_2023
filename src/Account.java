@@ -1,22 +1,27 @@
+// Account Class to Store information about an account for TokTik
+// 18-04-2023
+// Brandon Leonard LNRBRA001
+
 import java.util.ArrayList;
 
+//Account implements the Comparable interface so that it can be compared to other accounts when being stored in the binary tree
 public class Account implements Comparable<Account> {
 
 	private String accountName;
 	private String profileDescription;
 	ArrayList<Post> posts = new ArrayList<Post>();
 	
-	public Account(String accountName, String profileDescription)
+	public Account(String accountName, String profileDescription)	//constructor of a full acc
 	{
 		this.accountName = accountName;
 		this.profileDescription = profileDescription;
 	}
 
-	public Account(String accountName)
+	public Account(String accountName)	//constructor of account without profile description used for checks in Binary Tree
 	{
 		this.accountName = accountName;
 	}
-	public String getAccountName()
+	public String getAccountName()	//standard getters and setters below
 	{
 		return accountName;
 	}
@@ -51,11 +56,11 @@ public class Account implements Comparable<Account> {
 		return posts.remove(post);
 	}
 	
-	public int compareTo(Account other) {
+	public int compareTo(Account other) {	//compareTo method for when it get compared in the Binary Tree
 	    return this.accountName.compareTo(other.accountName);
 	}
 	
-	public String toString()
+	public String toString()	//standard toString method
 	{
 		return ("Account Name: "+ accountName + "\n" + "Profile Description: " + profileDescription);
 

@@ -1,3 +1,7 @@
+// TokTik GUI
+// 18-04-2023
+// Brandon Leonard LNRBRA001
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -14,7 +18,7 @@ public class MyGUI extends JFrame implements ActionListener {
     // Constructor
     public MyGUI() {
 
-        // Initialize and configure the output window
+        // Initialize and configure the output window with a scroller (this is the output window for system.out.println() statements)
         outputArea = new JTextArea();
         outputArea.setEditable(false);
         outputArea.setLineWrap(true);
@@ -71,100 +75,81 @@ public class MyGUI extends JFrame implements ActionListener {
     
     // Button actions
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == btn1) {
-            outputArea.setText("");
-            String accountName = JOptionPane.showInputDialog("Enter account name:");
-            if (accountName != null)
+        if (e.getSource() == btn1) {    //Find Profile Description button clicked
+            outputArea.setText("");     //Clear output area
+            String accountName = JOptionPane.showInputDialog("Enter account name:");    //Grab input from user
+            if (accountName != null)    //check if they hit cancel (cancel returns a null value)
             {
-                System.out.println(TokTikUtility.findProfileDecription(accountName, BT));
+                System.out.println(TokTikUtility.findProfileDecription(accountName, BT));   //call our findProfileDescription method
             } else {
-                System.out.println("Action Cancelled.");
+                System.out.println("Action Cancelled.");    //they hit the cancel button
             }
-        } else if (e.getSource() == btn2) {
-            outputArea.setText("");
-            // store that button 2 was clicked
-            BT.inOrder();
-            if (outputArea.getText().length() == 0)
+        } else if (e.getSource() == btn2) { //Show All Accounts button clicked
+            outputArea.setText(""); //clear the output area
+            BT.inOrder();   //use of inOrder traversal
+            if (outputArea.getText().length() == 0) //check if the Binary Tree actually outputted anything
             {
-                System.out.println("No Accounts Loaded");
+                System.out.println("No Accounts Loaded");   //if it outputs nothing
             }
-        } else if (e.getSource() == btn3) {
-            outputArea.setText("");
-            String accountName = JOptionPane.showInputDialog("Enter account name:");
+        } else if (e.getSource() == btn3) {     //Create New Account Button was clicked
+            outputArea.setText("");     //Clear output text area
+            String accountName = JOptionPane.showInputDialog("Enter account name:");        //gather the account name and profile description from the user
             String profileDescription = JOptionPane.showInputDialog("Enter profile description:");
-            if ((accountName != null) && (profileDescription != null))
+            if ((accountName != null) && (profileDescription != null))  //check that they didnt hit the cancel button
             {
-                if (TokTikUtility.accountExists(accountName, BT))
-						{
-							System.out.println("Account name already exists");
-						} else {
-							TokTikUtility.createNewAccount(accountName, profileDescription, BT);
-							System.out.println("Account added");
-						}
-            } else {
-                System.out.println("Account Creation Cancelled");
-            }
-            // store that button 3 was clicked and then ask for the account name and store the account name. 
-            // It then needs to ask for the profile description and store that.
-        } else if (e.getSource() == btn4) {
-            outputArea.setText("");
-            String accountName = JOptionPane.showInputDialog("Enter account name:");
-            if (accountName != null)
-            {
-                System.out.println(TokTikUtility.deleteAccount(accountName, BT));
+				TokTikUtility.createNewAccount(accountName, profileDescription, BT);    //create new account and add to BT
 
             } else {
-                System.out.println("Action Cancelled.");
+                System.out.println("Account Creation Cancelled");   //they hit the cancel button
             }
-            // store that button 4 was clicked and then ask for the account name and store that account name.
-        } else if (e.getSource() == btn5) {
-            outputArea.setText("");
-            String accountName = JOptionPane.showInputDialog("Enter account name:");
-            if (accountName != null){
-                System.out.println(TokTikUtility.getAllPosts(accountName, BT));
-            } else {
-                System.out.println("Action Cancelled.");
-            }
+        } else if (e.getSource() == btn4) {     //Delete Account button was clicked
+            outputArea.setText("");             //Clear output text area
+            String accountName = JOptionPane.showInputDialog("Enter account name:");    //grab accountName from user
+            if (accountName != null)    // check that they didnt cancel
+            {
+                TokTikUtility.deleteAccount(accountName, BT);   //delete the account
 
-            // store that button 5 was clicked and then ask for the account name and store that account name.
-        } else if (e.getSource() == btn6) {
+            } else {
+                System.out.println("Action Cancelled.");    //case for when they cancel
+            }
+        } else if (e.getSource() == btn5) { //Get all posts button clicked
+            outputArea.setText("");     //clear output text area
+            String accountName = JOptionPane.showInputDialog("Enter account name:");    //grab the account name from the user
+            if (accountName != null){   //check that they didnt click cancel
+                System.out.println(TokTikUtility.getAllPosts(accountName, BT)); //print all posts from the given account or print error msg if account doesnt exist
+            } else {
+                System.out.println("Action Cancelled.");    //case for when they click cancel
+            }
+        } else if (e.getSource() == btn6) {     //Create Post button was clicked
             outputArea.setText("");
-            String accountName = JOptionPane.showInputDialog("Enter account name:");
+            String accountName = JOptionPane.showInputDialog("Enter account name:");    //gather the relevant input from the user
             String videoFileName = JOptionPane.showInputDialog("Enter the video file name:");
             String numberOfLikes = JOptionPane.showInputDialog("Enter the number of likes:");
             String title = JOptionPane.showInputDialog("Enter the video title:");
-            if ((accountName != null) && (videoFileName != null) && (numberOfLikes != null) && (title != null))
+            if ((accountName != null) && (videoFileName != null) && (numberOfLikes != null) && (title != null)) //check that they didnt cancel at some point
             {
-                if (TokTikUtility.isNumeric(numberOfLikes)){
-                    TokTikUtility.insterNewPost(accountName, BT, videoFileName, numberOfLikes, title);
+                if (TokTikUtility.isNumeric(numberOfLikes)){    //check that number of likes entered was numeric
+                    TokTikUtility.insterNewPost(accountName, BT, videoFileName, numberOfLikes, title);  //insert new post into the account or give error if account not found
                 } else {
-                    System.out.println("Please give a numeric value for number of likes :)");
+                    System.out.println("Please give a numeric value for number of likes :)");   //case for when numberOfLikes is not numeric
                 }
             } else {
-                System.out.println("Insertion of posts cancelled");
+                System.out.println("Insertion of posts cancelled"); //case for when they hit cancel
             }
-            // store that button 6 was
-        } else if (e.getSource() == btn7) {
-            outputArea.setText("");
-            // store that button 7 was
-            String fileName = JOptionPane.showInputDialog("Enter the file name:");
-            if (fileName != null)
+        } else if (e.getSource() == btn7) { //Process Actions from file button was clicked
+            outputArea.setText(""); //clear output text area
+            String fileName = JOptionPane.showInputDialog("Enter the file name:");  //get the file name 
+            if (fileName != null)   //check that they didnt cancel
             {
-                TokTikUtility.processData(fileName, BT); 
+                TokTikUtility.processData(fileName, BT);    //run our function which will do the rest incl handling other error types
             }else {
-                System.out.println("Action loading cancelled.");
+                System.out.println("Action loading cancelled.");    //case for when they cancel
             }
             
-        } else if (e.getSource() == btn8) {
+        } else if (e.getSource() == btn8) { //The Quit button was pressed
             outputArea.setText("");
-            // store that button 8 was
             System.out.println("Bye!");
-            System.exit(0);
+            System.exit(0); //close the app
         }
-    }
-
-    public static void main(String[] args)
-    {
-        new MyGUI();
     }
 }
