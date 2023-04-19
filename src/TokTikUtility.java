@@ -202,17 +202,19 @@ public class TokTikUtility {
 
     
     /** 
-     * method to check if a given String value is numeric or not
+     * method to check if a given String value is valid for number of likes
      * @param strNum
      * @return boolean
      */
-    public static boolean isNumeric(String strNum) {    //method to check if a given String value is numeric or not
+    public static boolean isNumeric(String strNum) {    //method to check if a given String value is valid for number of likes, should have changed the name to 
         if (strNum == null) {   //first checking if it is null
             return false;
-        }
-        try {
+        }try {
             Integer.parseInt(strNum); //use of try to see if we can parse it
         } catch (NumberFormatException nfe) {   //if we cannot parse it then it is not numeric
+            return false;
+        }
+        if (Integer.parseInt(strNum) < 0){
             return false;
         }
         return true;

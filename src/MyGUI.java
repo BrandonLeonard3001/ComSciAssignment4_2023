@@ -142,7 +142,7 @@ public class MyGUI extends JFrame implements ActionListener {
                 if (TokTikUtility.isNumeric(numberOfLikes)){    //check that number of likes entered was numeric
                     TokTikUtility.insterNewPost(accountName, BT, videoFileName, numberOfLikes, title);  //insert new post into the account or give error if account not found
                 } else {
-                    System.out.println("Please give a numeric value for number of likes :)");   //case for when numberOfLikes is not numeric
+                    System.out.println("Please give a valid value for number of likes :)");   //case for when numberOfLikes is not valid (is not int and/or negative)
                 }
             } else {
                 System.out.println("Insertion of posts cancelled"); //case for when they hit cancel
